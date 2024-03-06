@@ -13,7 +13,7 @@ const routes: Routes = [
       import('./merchant/merchant.module').then((m) => m.MerchantModule),
   },
   {
-    path: '',
+    path: 'customer',
     loadChildren: () =>
       import('./customer/customer.module').then((m) => m.CustomerModule),
   },
