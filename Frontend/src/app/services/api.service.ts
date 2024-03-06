@@ -9,14 +9,9 @@ export class ApiService {
 
   constructor(public http: HttpClient) {
     this.url = '';
-    //  this.url = 'http://drgradingapi.us-east-1.elasticbeanstalk.com/api';
+    //  this.url = '';
     // this.url = 'https://localhost:5001/api'
   }
-
-  /* Main functions for making API calls 
-  - uses the url variable, and endpoint from parameters to create URL to make a request too
-  - the service is called 
-  */
 
   // GET request
   get(endpoint: string, params?: any, reqOpts?: any) {

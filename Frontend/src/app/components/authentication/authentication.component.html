@@ -1,0 +1,59 @@
+<div class="headings" style="display: flex; align-items: center; justify-content: center;">
+<i
+      class="material-icons"
+      [ngClass]="{ 'merchant-icon': isCustomer === false }"
+      >account_balance_wallet</i
+    >
+    {{title}}
+</div>
+
+<div class="mt-2" style="display: flex; flex-direction: column; align-items: center;">
+    <p class="headings">{{(isSignup)? 'Sign Up': 'Login'}}</p>
+    <p class="headings"><span [ngClass]="isCustomer==true? 'customer-heading': 'merchant-heading' "> {{title}} </span> Account</p>
+</div>
+
+<ng-container *ngIf="!isSignup">
+    <form (ngSubmit)="Login()" [formGroup]="signInForm">
+        <div class="form-group">
+          <label for="name">User Name</label>
+          <input type="text" class="form-control" formControlName="username" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" formControlName="password" ngModel required>
+        </div>
+        <button type="submit" class="btn"
+        [ngClass]="{ 'merchant-btn': isCustomer === false }"
+        [disabled]="!signInForm.valid">Submit</button>
+    </form>
+    <div *ngIf="isCustomer">Already Have An Accout <span (click)="toggleForm()">SignIn</span></div>
+</ng-container>
+
+<ng-container *ngIf="isSignup">
+    <form (ngSubmit)="Signup()" [formGroup]="signUpForm">
+        <div class="form-group">
+          <label for="name">User Name</label>
+          <input type="text" class="form-control" formControlName="username" ngModel required>
+        </div>
+        <div class="form-group">
+            <label for="account">Account Number</label>
+            <input type="text" class="form-control" formControlName="accountNumber" ngModel required>
+        </div>
+            <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" formControlName="email" ngModel required>
+        </div>
+            <div class="form-group">
+            <label for="number">Phone Number</label>
+            <input type="number" class="form-control" formControlName="phoneNumber" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" formControlName="password" ngModel required>
+        </div>
+        <button type="submit" class="btn"
+        [ngClass]="{ 'merchant-btn': isCustomer === false }"
+        [disabled]="!signInForm.valid">Submit</button>
+    </form>
+    <div>Already Have An Accout <span (click)="toggleForm()">SignIn</span></div>
+</ng-container>

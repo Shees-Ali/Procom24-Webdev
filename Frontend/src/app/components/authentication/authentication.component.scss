@@ -1,0 +1,29 @@
+.headings {
+  font-size: 24px;
+  font-weight: 500;
+}
+.customer-heading {
+  color: var(--customer-primary);
+}
+.merchant-heading {
+  color: var(--merchant-primary);
+}
+
+.btn {
+  color: white;
+  width: 100%;
+  background-color: var(--customer-primary);
+}
+.merchant-btn {
+  background-color: var(--merchant-primary);
+}
+
+.material-icons {
+  color: var(--customer-primary);
+  font-size: 36px;
+  margin-right: 12px;
+}
+
+.merchant-icon {
+  color: var(--merchant-primary);
+}
