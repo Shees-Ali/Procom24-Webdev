@@ -27,4 +27,15 @@ module.exports = {
       .withMessage("Phone number should be 12 digits long"),
     body("accountNumber").notEmpty().withMessage("Account Number is required"),
   ],
+  validateCreate: [
+    body("username").notEmpty().withMessage("Username is required"),
+    body("email")
+      .isEmail()
+      .normalizeEmail({ gmail_remove_dots: false })
+      .withMessage("Invalid email"),
+    body("accountNumber").notEmpty().withMessage("Account number is required"),
+    body("merchantAccountNumber").notEmpty().withMessage("Merchant Account number is required"),
+    body("bank").notEmpty().withMessage("Bank is required"),
+    body("paymentPurpose").notEmpty().withMessage("Payment Purpose is required"),
+  ],
 };
