@@ -2,10 +2,11 @@ var express = require("express");
 require("dotenv").config();
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const connectDB = require('./api/helpers/connectDB');
+const connectDB = require("./api/helpers/connectDB");
 
 var indexRouter = require("./api/routes/index");
-var auth = require("./api/routes/auth")
+var auth = require("./api/routes/auth");
+var orders = require("./api/routes/orders");
 
 var app = express();
 // Connect to MongoDB Database
@@ -27,10 +28,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Routes
 app.use("/api", indexRouter);
 app.use("/api/auth", auth);
+app.use("/api/orders", orders);
 
-
+// Setup Port
 const port = process.env.PORT || 3000;
 
 app.listen(port, () =>

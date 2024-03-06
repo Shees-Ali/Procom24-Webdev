@@ -11,10 +11,10 @@ module.exports = {
       if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
       }
-      const { email, password } = req.body;
+      const { username, password } = req.body;
 
       const userDetails = await User.findOne({
-        email: email,
+        username: username,
       });
 
       if (!userDetails) {
@@ -27,7 +27,7 @@ module.exports = {
 
       if (!isMatch) {
         return res.status(401).json({
-          message: "Invalid password",
+          message: "Invalid credentials",
         });
       }
 
@@ -61,18 +61,8 @@ module.exports = {
       const { username, email, password, phoneNumber, accountNumber } =
         req.body;
 
-      //   // Check if user already exists with this email
-      //   const existingUser = await User.findOne({ email: email });
-
-      //   if (existingUser) {
-      //     return res.status(409).json({
-      //       message: "User with this email already exists",
-      //     });
-      //   }
-      //Password encription
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Creating a new user document
       const newUser = new User({
         username,
         email,
@@ -82,9 +72,8 @@ module.exports = {
         userRole: "customer",
       });
       const result = await newUser.save();
-      console.log(result);
-      // Returning success message
-      res.status(201).json({
+
+      res.status(200).json({
         message: "User created successfully",
         user: result,
       });
