@@ -3,9 +3,7 @@ const { body } = require("express-validator");
 module.exports = {
   // Validation middleware for login
   validateLogin: [
-    body("email", "Invalid email")
-      .isEmail()
-      .normalizeEmail({ gmail_remove_dots: false }),
+    body("username").notEmpty().withMessage("User name is required"),
     body("password")
       .isLength({ min: 8 })
       .withMessage("Password must be at least 8 characters long"),
@@ -34,8 +32,12 @@ module.exports = {
       .normalizeEmail({ gmail_remove_dots: false })
       .withMessage("Invalid email"),
     body("accountNumber").notEmpty().withMessage("Account number is required"),
-    body("merchantAccountNumber").notEmpty().withMessage("Merchant Account number is required"),
+    body("merchantAccountNumber")
+      .notEmpty()
+      .withMessage("Merchant Account number is required"),
     body("bank").notEmpty().withMessage("Bank is required"),
-    body("paymentPurpose").notEmpty().withMessage("Payment Purpose is required"),
+    body("paymentPurpose")
+      .notEmpty()
+      .withMessage("Payment Purpose is required"),
   ],
 };
