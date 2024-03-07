@@ -11,7 +11,7 @@ import { UserService } from '../../services/user.service';
 export class TopBarComponent extends BasePage implements OnInit {
  @Input() isCustomer: boolean | undefined;
   title : String | undefined;
-  user: any;
+  user!: any;
 
   constructor(injector:Injector){
     super(injector);

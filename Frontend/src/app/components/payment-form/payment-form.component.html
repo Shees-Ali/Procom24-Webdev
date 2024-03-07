@@ -1,8 +1,8 @@
 <ng-container>
   <form (ngSubmit)="Submit()" [formGroup]="paymentForm">
     <div>
-      <div>
-        <div class="form-group">
+      <div style="display: flex;">
+        <div class="form-group mr-4" style="width: 46%;">
           <label for="name">{{
             isCustomer ? "UserName" : "Customer Name"
           }}</label>
@@ -14,7 +14,7 @@
             required
           />
         </div>
-        <div class="form-group">
+        <div class="form-group ml-4" style="width: 46%;">
           <label for="name">{{
             isCustomer
               ? "Email Address (Optional)"
