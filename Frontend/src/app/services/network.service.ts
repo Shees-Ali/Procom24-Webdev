@@ -51,6 +51,10 @@ export class NetworkService {
     return this.httpPutResponse('orders/' + id + '/update', order);
   }
 
+  getReporting() {
+    return this.httpGetResponse('orders/reportingCount');
+  }
+
   getCurrentUser() {
     return this.httpGetResponse('auth/getCurrent');
   }
