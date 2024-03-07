@@ -1,5 +1,5 @@
 <ng-container>
-  <form (ngSubmit)="Submit()" [formGroup]="paymentForm">
+  <form (ngSubmit)="Submit()" [formGroup]="paymentForm" *ngIf="!qrCodeImageUrl">
     <div>
       <div style="display: flex;">
         <div class="form-group mr-4" style="width: 46%;">
@@ -81,4 +81,6 @@
     </div>
     <button type="submit" class="btn">Submit</button>
   </form>
+  <img *ngIf="qrCodeImageUrl" [src]="qrCodeImageUrl" alt="QR Code">
+  <button *ngIf="qrCodeImageUrl" class="btn btn-primary" (click)="downloadQRCode()">Download QR Code</button>
 </ng-container>
