@@ -3,15 +3,15 @@
   <div class="stats-row">
     <div class="stats-box" style="background-color: cyan">
       <p>Total Pending Records</p>
-      <p>1800</p>
+      <p>{{ reportingCounts?.pendingCount }}</p>
     </div>
     <div class="stats-box" style="background-color: lightgreen">
       <p>Total Paid Records</p>
-      <p>1800</p>
+      <p>{{ reportingCounts?.acceptedCount }}</p>
     </div>
     <div class="stats-box" style="background-color: lightcoral">
       <p>Total Rejected Records</p>
-      <p>1800</p>
+      <p>{{ reportingCounts?.rejectedCount }}</p>
     </div>
   </div>
   <div>
