@@ -9,7 +9,7 @@ module.exports = {
       if (req.user.userRole !== "customer") {
         orders = await Order.find();
       } else {
-        orders = await Order.find({ createdAt: req.user.userId });
+        orders = await Order.find({ createdBy: req.user.userId });
       }
 
       res.status(200).json({
