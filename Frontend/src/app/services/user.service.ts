@@ -10,10 +10,10 @@ export class UserService {
   constructor(public network: NetworkService, public router: Router) {}
 
   async getUserAPI() {
-    // const res = await this.network.getCurrentUser();
-    // if (res?.user) {
-    //   this.user = res.user;
-    // }
+    const res = await this.network.getCurrentUser();
+    if (res?.user) {
+      this.user = res.user;
+    }
   }
 
   async getCurrentUser() {
@@ -24,11 +24,11 @@ export class UserService {
   }
 
   async login(creds: any) {
-    const res = await this.network.login(creds).catch((error)  => {
+    const res = await this.network.login(creds).catch((error) => {
       console.log(error);
     });
     localStorage.setItem('token', res.token);
-    localStorage.setItem('user_role', res.userDetails.userRole)
+    localStorage.setItem('user_role', res.userDetails.userRole);
     return res;
   }
 

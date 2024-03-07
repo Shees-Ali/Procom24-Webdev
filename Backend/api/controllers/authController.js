@@ -83,4 +83,29 @@ module.exports = {
       });
     }
   },
+
+  getCurrent: async (req, res) => {
+    try {
+      // Ensure user is authenticated using middleware before this function
+      if (!req.user) {
+        return res.status(401).json({ message: "Unauthorized: Access denied" });
+      }
+
+      const user = await User.findById(req.user.userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Optionally exclude sensitive fields like password before sending response
+      const sanitizedUser = { ...user._doc }; // Create a copy excluding password
+      delete sanitizedUser.password;
+
+      res.status(200).json({
+        user: sanitizedUser
+      });
+    } catch (error) {
+      console.error("Error fetching current user:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
 };

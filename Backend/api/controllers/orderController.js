@@ -94,4 +94,40 @@ module.exports = {
       });
     }
   },
+
+  getReporting: async (req, res) => {
+    try {
+      let allCount = 0;
+      let pendingCount = 0;
+      let acceptedCount = 0;
+      let rejectedCount = 0;
+
+      if (req.user.userRole !== "customer") {
+        allCount = (await Order.find()).length;
+        pendingCount = (await Order.find({ status: "Pending" })).length;
+        acceptedCount = (await Order.find({ status: "Accepted" })).length;
+        rejectedCount = (await Order.find({ status: "Rejected" })).length;
+      } else {
+        allCount = (await Order.find({ createdBy: req.user.userId })).length;
+        pendingCount = (
+          await Order.find({ createdBy: req.user.userId, status: "Pending" })
+        ).length;
+        acceptedCount = (
+          await Order.find({ createdBy: req.user.userId, status: "Accepted" })
+        ).length;
+        rejectedCount = (
+          await Order.find({ createdBy: req.user.userId, status: "Rejected" })
+        ).length;
+      }
+
+      res.status(200).json({
+        message: "Orders Fetched Successfully",
+        data: orders,
+      });
+    } catch (error) {
+      res.status(400).json({
+        message: error.message,
+      });
+    }
+  },
 };

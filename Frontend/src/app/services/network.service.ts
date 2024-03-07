@@ -52,7 +52,7 @@ export class NetworkService {
   }
 
   getCurrentUser() {
-    
+    return this.httpGetResponse('auth/getCurrent');
   }
   // Function for POST method
   httpPostResponse(

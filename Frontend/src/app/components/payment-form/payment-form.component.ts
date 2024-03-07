@@ -10,7 +10,7 @@ import { BasePage } from '../../base/base';
 export class PaymentFormComponent extends BasePage {
   @Input() isCustomer: boolean | undefined;
   paymentForm!: FormGroup<any>;
-
+  user: any;
   constructor(injector: Injector) {
     super(injector);
     this.paymentForm = this.formBuilder.group({
@@ -22,6 +22,17 @@ export class PaymentFormComponent extends BasePage {
       bank: ['', Validators.required],
       paymentPurpose: ['', Validators.required],
     });
+    this.getCurrentUser();
+  }
+
+  async getCurrentUser() {
+    this.user = await this.userService.getCurrentUser();
+    const userPatchData = {
+      username: this.user.username,
+      email: this.user.email,
+      accountNumber: this.user.accountNumber,
+    };
+    this.paymentForm.patchValue(userPatchData);
   }
 
   async Submit() {
