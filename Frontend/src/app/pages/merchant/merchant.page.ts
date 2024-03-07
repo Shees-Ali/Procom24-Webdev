@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './merchant.page.scss'
 })
 export class MerchantPage {
+  isLoading:boolean = false;
 
 }
