@@ -28,7 +28,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of items">
+        <tr
+          *ngFor="let item of items"
+          [ngClass]="item.status == 'Succeeded' ? 'success' : ''"
+        >
           <td>{{ item.accountNumber }}</td>
           <td>{{ item.merchantAccountNumber }}</td>
           <td>
@@ -51,7 +54,7 @@
           <td>{{ item.paymentPurpose }}</td>
           <td>{{ item.createdAt | date }}</td>
           <td>{{ item.amount + " PKR" }}</td>
-          <td>
+          <td *ngIf="item.status != 'Succeeded'">
             <button
               style="margin-right: 8px"
               class="btn btn-success"

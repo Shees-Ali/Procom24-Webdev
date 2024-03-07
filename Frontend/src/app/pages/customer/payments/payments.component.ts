@@ -20,10 +20,13 @@ export class PaymentsComponent extends BasePage implements OnInit {
     this.getPayments();
   }
 
+  async getReportingCount() {
+    this.utility.showLoader();
+  }
+
   async getPayments() {
     this.utility.showLoader();
     const res = await this.network.getOrders();
-    console.log(res);
     if (res) {
       this.items = res.data;
     }

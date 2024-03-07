@@ -1,19 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
+import { BasePage } from '../../../base/base';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styleUrl: './customers.component.scss'
+  styleUrl: './customers.component.scss',
 })
-export class CustomersComponent {
-  items: any[] = [
-    { 
-      customer: 'John Doe',
-      email: 'john@example.com',
-      phone: '123-456-7890',
-      defaultPaymentMethod: 'Credit Card',
-      createDate: '2024-03-06'
-    },
-    // Add more items as needed
-  ];
+export class CustomersComponent extends BasePage implements OnInit {
+  items: any[] = [];
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  ngOnInit() {
+    this.getPayments();
+  }
+
+  async getPayments() {
+    this.utility.showLoader();
+    const res = await this.network.getAllCustomers();
+    console.log(res);
+    if (res) {
+      this.items = res.data;
+    }
+  }
 }
