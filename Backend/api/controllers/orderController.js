@@ -5,7 +5,12 @@ const Order = require("../models/Order");
 module.exports = {
   get: async (req, res) => {
     try {
-      const orders = await Order.find();
+      let orders = [];
+      if (req.user.userRole !== "customer") {
+        orders = await Order.find();
+      } else {
+        orders = await Order.find({ createdAt: req.user.userId });
+      }
 
       res.status(200).json({
         message: "Orders Fetched Successfully",
@@ -44,8 +49,10 @@ module.exports = {
       if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
       }
-
-      const newOrder = new Order(req.body);
+      const user = req.user;
+      const body = req.body;
+      body["createdBy"] = user.userId ?? "";
+      const newOrder = new Order(body);
       const savedOrder = await newOrder.save();
 
       res.status(200).json({
@@ -53,6 +60,7 @@ module.exports = {
         data: savedOrder,
       });
     } catch (error) {
+      console.log(error);
       res.status(500).json({
         message: "Internal server error",
       });
@@ -65,7 +73,7 @@ module.exports = {
       if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
       }
-      
+
       const { id } = req.params;
       const updates = req.body;
       const options = { new: true };
