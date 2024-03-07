@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    height: 100px;
+    height: 120px;
     width: 180px;
 
     .title {
@@ -21,11 +21,12 @@
     .value {
       font-size: 24px;
       font-weight: 600;
+      margin-bottom: 8px;
     }
 
     .chip {
       font-size: 12px;
-      border-radius: 1px;
+      border-radius: 12px;
       padding: 4px;
       margin: 0;
     }
@@ -83,4 +84,8 @@
 .badge-pill {
   font-size: 14px;
   padding: 8px;
+}
+
+.link {
+  color: #71b0db;
 }

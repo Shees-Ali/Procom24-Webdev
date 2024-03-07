@@ -6,22 +6,22 @@
     <div class="stats-box purple">
       <p class="title">All Payments</p>
       <p class="value">{{ (reportingCounts?.allAmount ?? 0) + " PKR" }}</p>
-      <p class="chip">{{ reportingCounts?.allCount }}</p>
+      <p class="chip">{{ reportingCounts?.allCount + " Records"}}</p>
     </div>
     <div class="stats-box green">
       <p class="title">Succeeded</p>
       <p class="value">{{ (reportingCounts?.acceptedAmount ?? 0) + " PKR" }}</p>
-      <p class="chip">{{ reportingCounts?.acceptedCount }}</p>
+      <p class="chip">{{ reportingCounts?.acceptedCount + " Records"}}</p>
     </div>
     <div class="stats-box yellow">
       <p class="title">Pending</p>
       <p class="value">{{ (reportingCounts?.pendingAmount ?? 0) + " PKR" }}</p>
-      <p class="chip">{{ reportingCounts?.pendingCount }}</p>
+      <p class="chip">{{ reportingCounts?.pendingCount + " Records"}}</p>
     </div>
     <div class="stats-box red">
       <p class="title">Rejected</p>
       <p class="value">{{ (reportingCounts?.rejectedAmount ?? 0) + " PKR" }}</p>
-      <p class="chip">{{ reportingCounts?.rejectedCount }}</p>
+      <p class="chip">{{ reportingCounts?.rejectedCount + " Records"}}</p>
     </div>
   </div>
   <div>
@@ -39,7 +39,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of items">
-          <td>{{ item.accountNumber }}</td>
+          <td class="link">{{ item.accountNumber }}</td>
           <td>{{ item.merchantAccountNumber }}</td>
           <td>
             <span
