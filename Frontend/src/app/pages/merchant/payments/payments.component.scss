@@ -14,19 +14,29 @@
     width: 180px;
 
     .title {
-        font-weight: 500;
-        margin-bottom: 8px;
+      font-weight: 500;
+      margin-bottom: 8px;
     }
 
     .value {
-        font-size: 24px;
-        font-weight: 600;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .chip {
+      font-size: 12px;
+      border-radius: 1px;
+      padding: 4px;
+      margin: 0;
     }
   }
 
   .purple {
     background-color: #f4f1fc;
     transition: border 0.3s ease;
+    .chip {
+      border: 1px solid #9b8cc6;
+    }
   }
 
   .purple:hover {
@@ -36,6 +46,9 @@
   .green {
     background-color: #edfdf3;
     transition: border 0.3s ease;
+    .chip {
+      border: 1px solid #1ad758;
+    }
   }
 
   .green:hover {
@@ -45,6 +58,9 @@
   .yellow {
     background-color: #fdf9ee;
     transition: border 0.3s ease;
+    .chip {
+      border: 1px solid #cf920d;
+    }
   }
 
   .yellow:hover {
@@ -54,6 +70,9 @@
   .red {
     background-color: #fcf2f1;
     transition: border 0.3s ease;
+    .chip {
+      border: 1px solid #dd3940;
+    }
   }
 
   .red:hover {
