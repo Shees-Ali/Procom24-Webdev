@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilityService } from '../../services/utility.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -18,7 +19,8 @@ export class AuthenticationComponent implements OnInit {
   constructor(
     private utility: UtilityService,
     private authService: AuthenticationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router:Router
   ) {
     this.signInForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -41,16 +43,24 @@ export class AuthenticationComponent implements OnInit {
   Login() {
     this.utility.showLoader();
     console.log(this.signInForm.value);
-    this.authService.login(this.signInForm.value).subscribe(() => {
+    this.authService.login(this.signInForm.value).subscribe((a) => {
+      console.log(a);
       this.utility.hideLoader();
+      if(a.userDetails.userRole == "customer"){
+        this.router.navigateByUrl('customer/dashboard')
+      }
     });
   }
 
   Signup() {
     this.utility.showLoader();
     console.log(this.signUpForm.value);
-    this.authService.signup(this.signUpForm.value).subscribe(() => {
+    this.authService.signup(this.signUpForm.value).subscribe((a) => {
+      console.log(a);
       this.utility.hideLoader();
+      if(a.message == "user created successfully"){
+        this.utility.presentSuccessAlert(a.message);
+      }
     });
   }
 

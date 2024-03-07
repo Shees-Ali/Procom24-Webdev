@@ -16,6 +16,6 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
     PaymentFormComponent
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
-  exports: [TopBarComponent, SidenavComponent, AuthenticationComponent],
+  exports: [TopBarComponent, SidenavComponent, AuthenticationComponent, PaymentFormComponent],
 })
 export class ComponentsModule {}

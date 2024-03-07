@@ -45,7 +45,7 @@
         </div>
             <div class="form-group">
             <label for="number">Phone Number</label>
-            <input type="number" class="form-control" formControlName="phoneNumber" ngModel required>
+            <input type="text" class="form-control" formControlName="phoneNumber" ngModel required>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -53,7 +53,7 @@
         </div>
         <button type="submit" class="btn"
         [ngClass]="{ 'merchant-btn': isCustomer === false }"
-        [disabled]="!signInForm.valid">Submit</button>
+        [disabled]="!signUpForm.valid">Submit</button>
     </form>
     <div>Already Have An Accout <span (click)="toggleForm()">SignIn</span></div>
 </ng-container>
