@@ -18,7 +18,7 @@ export class PaymentFormComponent extends BasePage {
       email: [''],
       amount: ['', Validators.required],
       accountNumber: ['', Validators.required],
-      merchantAccNumber: ['', Validators.required],
+      merchantAccountNumber: ['', Validators.required],
       bank: ['', Validators.required],
       paymentPurpose: ['', Validators.required],
     });
