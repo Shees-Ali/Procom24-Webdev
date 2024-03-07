@@ -1,0 +1,65 @@
+<div>
+  <header>
+    <h1 style="font-size: 24px; font-weight: bold">Payments</h1>
+  </header>
+  <div class="stats-row">
+    <div class="stats-box" style="background-color: cyan">
+      <p>All Payments</p>
+      <p>1800</p>
+    </div>
+    <div class="stats-box" style="background-color: lightgreen">
+      <p>Succeeded</p>
+      <p>1800</p>
+    </div>
+    <div class="stats-box" style="background-color: lightcoral">
+      <p>Pending</p>
+      <p>1800</p>
+    </div>
+    <div class="stats-box" style="background-color: lightgoldenrodyellow">
+      <p>Rejected</p>
+      <p>1800</p>
+    </div>
+  </div>
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Customer Account No.</th>
+          <th>Merchant Account No.</th>
+          <th>Status</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Customer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.accountNumber }}</td>
+          <td>{{ item.merchantAccountNumber }}</td>
+          <td>
+            <span
+              *ngIf="item.status == 'Pending'"
+              class="badge badge-pill badge-light"
+              >{{ item.status }}</span
+            >
+            <span
+              *ngIf="item.status == 'Succeeded'"
+              class="badge badge-pill badge-success"
+              >{{ item.status }}</span
+            >
+            <span
+              *ngIf="item.status == 'Rejected'"
+              class="badge badge-pill badge-danger"
+              >{{ item.status }}</span
+            >
+          </td>
+          <td>{{ item.paymentPurpose }}</td>
+          <td>{{ item.createdAt | date }}</td>
+          <td>{{ item.amount + " PKR" }}</td>
+          <td>{{ item.username }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

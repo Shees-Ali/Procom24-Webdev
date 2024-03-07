@@ -7,21 +7,26 @@ const connectDB = require("./api/helpers/connectDB");
 var indexRouter = require("./api/routes/index");
 var auth = require("./api/routes/auth");
 var orders = require("./api/routes/orders");
+const authMiddleware = require("./api/middleware/authMiddleware");
 
 var app = express();
-// Connect to MongoDB Database
-connectDB();
 
-// Setup CORS
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, PATCH, DELETE"
   );
   res.setHeader("Access-Control-Allow-Headers", "*");
+  res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 });
+
+// Connect to MongoDB Database
+connectDB();
+
+// Setup CORS
+
 
 app.use(logger("dev"));
 app.use(express.json());

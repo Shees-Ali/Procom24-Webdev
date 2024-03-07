@@ -27,3 +27,17 @@
 .merchant-icon{
     color: var(--merchant-primary);
 }
+
+.btn-outline-primary{
+    color: var(--customer-primary);
+    border-color: var(--customer-primary);
+}
+
+.btn-outline-primary:hover{
+    background-color: white;
+}
+
+.btn-outline-primary .merchant-btn{
+    color: var(--merchant-primary);
+    border-color: var(--merchant-primary);
+}

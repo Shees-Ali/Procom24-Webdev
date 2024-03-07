@@ -27,6 +27,38 @@ export class NetworkService {
     return str.join('&');
   };
 
+  login(obj: any) {
+    return this.httpPostResponse('auth/login', obj);
+  }
+
+  signUp(obj: any) {
+    return this.httpPostResponse('auth/signup', obj);
+  }
+
+  createOrder(obj: any) {
+    return this.httpPostResponse('orders/create', obj);
+  }
+
+  getOrders() {
+    return this.httpGetResponse('orders');
+  }
+
+  getOrderById(id: string) {
+    return this.httpGetResponse('orders/' + id);
+  }
+
+  updateOrder(id: string, order: any) {
+    return this.httpPutResponse('orders/' + id + '/update', order);
+  }
+
+  getCurrentUser() {
+    return this.httpGetResponse('auth/getCurrent');
+  }
+
+  // Merchant APIs
+  getAllCustomers() {
+    return this.httpGetResponse('auth/getAllCustomers');
+  }
   // Function for POST method
   httpPostResponse(
     key: any,
@@ -123,7 +155,13 @@ export class NetworkService {
         (err) => {
           console.log(err);
           this.utility.hideLoader();
-          this.utility.presentFailureAlert(err.error.message);
+          if (err.error?.errors?.length > 0) {
+            const error = err.error?.errors[0];
+            this.utility.presentFailureAlert(error.msg);
+          }
+          if (err.error.message) {
+            this.utility.presentFailureAlert(err.error.message);
+          }
           if (err.status == 401) {
             localStorage.removeItem('token');
             localStorage.removeItem('user_role');

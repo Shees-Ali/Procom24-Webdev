@@ -19,17 +19,17 @@ const CustomerSideNav = [
   {
     title: 'Payments',
     icon: 'attach_money',
-    route: '',
+    route: 'customer/dashboard/payment',
   },
   {
     title: 'Instant Payments',
     icon: 'local_atm',
-    route: '',
+    route: 'customer/dashboard/instant-payment',
   },
   {
     title: 'QR Scan',
     icon: 'qr_code',
-    route: '',
+    route: 'customer/dashboard/qr-scan',
   },
 ]
 
@@ -37,31 +37,31 @@ const MerchantSideNav = [
   {
     title: 'Dashboard',
     icon: 'dashboard',
-    route: '',
+    route: 'merchant/dashboard/main',
   },
   {
     title: 'Payments',
     icon: 'attach_money',
-    route: '',
+    route: 'merchant/dashboard/payments',
   },
   {
     title: 'Customers',
     icon: 'groups',
-    route: '',
+    route: 'merchant/dashboard/customers',
   },
   {
     title: 'Payment Requests',
     icon: 'receipt_long',
-    route: '',
+    route: 'merchant/dashboard/payment-request',
   },
   {
     title: 'Report',
     icon: 'list_alt',
-    route: '',
+    route: 'merchant/dashboard/report',
   },
   {
     title: 'Setting',
     icon: 'settings',
-    route: '',
+    route: 'merchant/dashboard/settings',
   },
 ]

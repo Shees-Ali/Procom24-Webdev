@@ -1,0 +1,28 @@
+<div class="container">
+  <header>
+    <h1 style="font-size: 24px; font-weight: bold">QR Scan</h1>
+    <label *ngIf="!isQRuploaded">Upload Your QR Code</label>    
+  </header>
+  <div class="container col-md-10" *ngIf="!isQRuploaded">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group files">
+        <input
+          type="file"
+          class="form-control"
+          multiple
+          (change)="onFileSelected($event)"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn"
+        style="background-color: var(--customer-primary); color: white"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+<div class="container" *ngIf="isQRuploaded">
+    <app-payment-form [isCustomer]="true"></app-payment-form>
+</div>

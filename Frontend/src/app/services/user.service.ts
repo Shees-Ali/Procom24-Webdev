@@ -10,36 +10,36 @@ export class UserService {
   constructor(public network: NetworkService, public router: Router) {}
 
   async getUserAPI() {
-    // const res = await this.network.getCurrentUser();
-    // if (res?.user) {
-    //   this.user = res.user;
-    // }
+    const res = await this.network.getCurrentUser();
+    if (res?.user) {
+      this.user = res.user;
+    }
   }
 
   async getCurrentUser() {
-    // if (!this.user) {
-    //   await this.getUserAPI();
-    // }
-    // return this.user;
+    if (!this.user) {
+      await this.getUserAPI();
+    }
+    return this.user;
   }
 
   async login(creds: any) {
-    // const res = await this.network.login(creds).catch((error)  => {
-    //   console.log(error);
-    // });
-    // localStorage.setItem('token', res.token);
-    // localStorage.setItem('user_role', res.role[0])
-    // return res;
+    const res = await this.network.login(creds).catch((error) => {
+      console.log(error);
+    });
+    localStorage.setItem('token', res.token);
+    localStorage.setItem('user_role', res.userDetails.userRole);
+    return res;
   }
 
   async register(creds: any) {
-    // const res = await this.network.register(creds);
-    // return res;
+    const res = await this.network.signUp(creds);
+    return res;
   }
 
   logout() {
     this.user = null;
-    this.router.navigate(['']);
+    // this.router.navigate(['']);
     localStorage.removeItem('token');
     localStorage.removeItem('user_role');
   }

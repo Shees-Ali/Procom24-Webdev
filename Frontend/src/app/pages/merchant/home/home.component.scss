@@ -1,0 +1,65 @@
+.dashboard-container {
+    width: 100%; /* Full width of the viewport */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+.dashboard-header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.bigger-box {
+    display: flex;
+    max-width: 1200px; /* Set the maximum width for the bigger box */
+    width: 100%; /* Make it responsive to smaller screens */
+    margin: 20px auto 0; /* Add spacing around the bigger box and remove top margin */
+    position: relative;
+}
+
+.dashboard-section {
+    display: flex;
+}
+
+.box {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    /* Styles for the header */
+    color: #333;
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+p {
+    /* Styles for the text content */
+    color: #666;
+    font-size: 10px;
+}
+
+img {
+    /* Styles for the image */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.read-more-link {
+    /* Styles for the "Read More" link */
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto; /* Align the link to the bottom of the box */
+    align-self: flex-end;
+}

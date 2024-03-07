@@ -1,25 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UtilityService } from '../../services/utility.service';
-import { AuthenticationService } from '../../services/authentication.service';
+import { Component, Injector, Input, OnInit } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
+import { BasePage } from '../../base/base';
 
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.scss',
 })
-export class AuthenticationComponent implements OnInit {
+export class AuthenticationComponent extends BasePage implements OnInit {
   @Input() isCustomer: boolean | undefined;
   signInForm!: FormGroup<any>;
   signUpForm!: FormGroup<any>;
   title: string | undefined;
   isSignup: boolean = false;
 
-  constructor(
-    private utility: UtilityService,
-    private authService: AuthenticationService,
-    private formBuilder: FormBuilder
-  ) {
+  constructor(injector: Injector) {
+    super(injector);
     this.signInForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -38,23 +34,42 @@ export class AuthenticationComponent implements OnInit {
     this.title = this.isCustomer == true ? 'Customer Portal' : 'PayHabib';
   }
 
-  Login() {
+  async Login() {
     this.utility.showLoader();
-    console.log(this.signInForm.value);
-    this.authService.login(this.signInForm.value).subscribe(() => {
-      this.utility.hideLoader();
-    });
+    if (this.signInForm.invalid) {
+      this.utility.presentAlert('Fill All Fields');
+      return;
+    }
+
+    const res = await this.userService.login(this.signInForm.value);
+    if (res) {
+      if (res.userDetails.userRole == 'customer') {
+        this.router.navigateByUrl('customer/dashboard');
+      }
+      if (res.userDetails.userRole == 'merchant') {
+        this.router.navigateByUrl('merchant/dashboard');
+      }
+    }
+    this.utility.hideLoader();
   }
 
-  Signup() {
+  async Signup() {
     this.utility.showLoader();
-    console.log(this.signUpForm.value);
-    this.authService.signup(this.signUpForm.value).subscribe(() => {
-      this.utility.hideLoader();
-    });
+    if (this.signUpForm.invalid) {
+      this.utility.presentAlert('Fill All Fields');
+      return;
+    }
+
+    const res = await this.userService.register(this.signUpForm.value);
+    console.log('sign up res', res);
+    if (res.message == 'User created successfully') {
+      this.utility.presentSuccessAlert(res.message);
+      this.toggleForm();
+    }
+    this.utility.hideLoader();
   }
 
-  toggleForm(){
+  toggleForm() {
     this.isSignup = !this.isSignup;
   }
 }
