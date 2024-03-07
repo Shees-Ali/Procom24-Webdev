@@ -67,7 +67,7 @@ export class UtilityService {
         cancelButtonColor: '#d33',
         cancelButtonText: cancelButtonText,
         confirmButtonText: confirmTxt,
-      }).then((result) => {
+      }).then((result: any) => {
         resolve(result);
       });
     });
