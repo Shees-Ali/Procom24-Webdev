@@ -10,6 +10,7 @@ import jsQR from 'jsQR';
 })
 export class QrScanComponent extends BasePage{
   isQRuploaded: boolean = false;
+  QRScannedData:any;
   constructor(injector: Injector){
     super(injector);
   }
@@ -42,8 +43,8 @@ export class QrScanComponent extends BasePage{
         if (decodedData) {
           const parsedData = this.parseQRData(decodedData);
           console.log(parsedData);
-          // this.isQRuploaded = true;
-
+          this.isQRuploaded = true;
+          this.QRScannedData = await parsedData;
         } else {
           console.error('QR code not found');
         }
@@ -53,15 +54,41 @@ export class QrScanComponent extends BasePage{
 
   parseQRData(data: string): any {
     console.log("Data", data)
-    const parsedValues = [];
-      while (data) {
-        const valueNumber = data.slice(0, 2);
-        const valueSize = parseInt(data.slice(2, 4), 10);
-        const value = data.slice(4, 4 + valueSize);
-        parsedValues.push({ valueNumber, value });
-        data = data.slice(4 + valueSize);
+    var parsedValues: any = {};
+    while (data) {
+      const valueNumber = data.slice(0, 2);
+      const valueSize = parseInt(data.slice(2, 4), 10);
+      const value = data.slice(4, 4 + valueSize);
+      console.log(valueNumber, valueSize , value);
+      switch (valueNumber) {
+        case '01':
+          parsedValues.username = value;
+          break;
+        case '02':
+          parsedValues.email = value;
+          break;
+        case '03':
+          parsedValues.amount = parseFloat(value);
+          break;
+        case '04':
+          parsedValues.accountNumber = value;
+          break;
+        case '05':
+          parsedValues.merchantAccountNumber = value;
+          break;
+        case '06':
+          parsedValues.bank = value;
+          break;
+        case '07':
+          parsedValues.paymentPurpose = value;
+          break;
+        
+        default:
+          break;
       }
-      console.log(parsedValues);
-      return parsedValues;
+
+      data = data.slice(4 + valueSize);
     }
+    return parsedValues;
   }
+}

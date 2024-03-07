@@ -10,11 +10,13 @@ import QRCode from 'qrcode-generator';
 })
 export class PaymentFormComponent extends BasePage implements OnInit {
   @Input() isCustomer: boolean | undefined;
+  @Input() qrScanData!:any;
   paymentForm!: FormGroup<any>;
   user: any;
   qrCodeImageUrl!: string;
   constructor(injector: Injector) {
     super(injector);
+    console.log("here")
     this.paymentForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: [''],
@@ -28,6 +30,23 @@ export class PaymentFormComponent extends BasePage implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentUser();
+    this.setScannedData();
+  }
+
+  setScannedData(){
+    setTimeout(()=>{
+      if(this.qrScanData != null){
+        const userPatchData = {
+          username: this.qrScanData.username,
+          email: this.qrScanData.email,
+          amount: this.qrScanData.amount,
+          merchantAccountNumber : this.qrScanData.merchantAccountNumber,
+          accountNumber: this.qrScanData.accountNumber,
+          paymentPurpose : this.qrScanData.paymentPurpose
+        };
+        this.paymentForm.patchValue(userPatchData);
+      }
+    },200)
   }
 
   async getCurrentUser() {
@@ -71,8 +90,8 @@ export class PaymentFormComponent extends BasePage implements OnInit {
     const username = formatField(formValues.username, '01');
     const email = formatField(formValues.email, '02');
     const amount = formatField(formValues.amount.toString(), '03');
-    const accountNumber = `04${formValues.accountNumber}`;
-    const merchantAccountNumber = `05${formValues.merchantAccountNumber}`;
+    const accountNumber = `0417${formValues.accountNumber}`;
+    const merchantAccountNumber = `0517${formValues.merchantAccountNumber}`;
     const bank = formatField(formValues.paymentPurpose, '06');
     const paymentPurpose = formatField(formValues.paymentPurpose, '07');
   
