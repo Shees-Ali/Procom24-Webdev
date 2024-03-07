@@ -25,6 +25,7 @@
 }
 
 .sidebar .nav-link{
+    color: #8b8b8b;
     display: flex;
     align-items: center;
 }
@@ -41,6 +42,9 @@
     background-color: var(--customer-primary);
     border-radius: 4px;
     margin: 0 10px;
+}
+.sidebar .merchant-nav-link.active {
+    background-color: var(--merchant-primary);
 }
 
 .sidebar .nav-link:hover .feather,
