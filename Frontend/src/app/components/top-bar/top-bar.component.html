@@ -7,9 +7,13 @@
     >
     {{ title }}
   </div>
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" (click)="logout()">Sign out</a>
+  <div class="navbar-nav ml-auto">
+    <div class="nav-item text-nowrap" style="display: flex; justify-content: center; align-items: center; font-size: 16px;">
+      <button type="button" class="btn btn-outline-primary"
+      [ngClass]="{ 'merchant-btn': isCustomer === false }"
+       >Create</button>
+      <p class="px-3" style="margin: 0;"> | {{user.username}}</p>  
+      <a class="nav-link px-3" style="cursor: pointer;" (click)="logout()">Sign out</a>
     </div>
   </div>
 </nav>

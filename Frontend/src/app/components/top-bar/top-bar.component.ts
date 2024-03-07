@@ -8,12 +8,20 @@ import { UserService } from '../../services/user.service';
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.scss'
 })
-export class TopBarComponent implements OnInit {
+export class TopBarComponent extends BasePage implements OnInit {
  @Input() isCustomer: boolean | undefined;
   title : String | undefined;
+  user: any;
 
-  constructor(private router:Router, private userService:UserService){
+  constructor(injector:Injector){
+    super(injector);
+    this.getCurrentUser();
   }
+  
+  async getCurrentUser() {
+    this.user = await this.userService.getCurrentUser();
+  }
+
   ngOnInit(): void{
     this.title = (this.isCustomer == true) ? 'Customer Portal' : 'PayHabib';
   }
