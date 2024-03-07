@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 @NgModule({
   declarations: [
     SidenavComponent,
     TopBarComponent,
     SidenavComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    PaymentFormComponent
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [TopBarComponent, SidenavComponent, AuthenticationComponent],
