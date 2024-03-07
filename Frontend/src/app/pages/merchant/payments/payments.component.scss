@@ -1,22 +1,67 @@
-.stats-row{
+.stats-row {
+  display: flex;
+  margin: 20px 0;
+  .stats-box {
+    margin: 20px 20px 0 0;
+    border-radius: 8px;
+    padding: 16px;
+    color: black;
     display: flex;
-    margin: 20px 0;
-    .stats-box{
-        margin: 20px 20px 0 0;
-        border-radius: 8px;
-        color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
-        width: 180px;
-        font-weight: bold;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    height: 100px;
+    width: 180px;
+
+    .title {
+        font-weight: 500;
+        margin-bottom: 8px;
     }
+
+    .value {
+        font-size: 24px;
+        font-weight: 600;
+    }
+  }
+
+  .purple {
+    background-color: #f4f1fc;
+    transition: border 0.3s ease;
+  }
+
+  .purple:hover {
+    border: 1px solid #9b8cc6;
+  }
+
+  .green {
+    background-color: #edfdf3;
+    transition: border 0.3s ease;
+  }
+
+  .green:hover {
+    border: 1px solid #1ad758;
+  }
+
+  .yellow {
+    background-color: #fdf9ee;
+    transition: border 0.3s ease;
+  }
+
+  .yellow:hover {
+    border: 1px solid #cf920d;
+  }
+
+  .red {
+    background-color: #fcf2f1;
+    transition: border 0.3s ease;
+  }
+
+  .red:hover {
+    border: 1px solid #dd3940;
+  }
 }
 
 .badge-pill {
-    font-size: 14px;
-    padding: 8px;
-  }
-  
+  font-size: 14px;
+  padding: 8px;
+}
