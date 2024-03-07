@@ -29,6 +29,7 @@
     color: #8b8b8b;
     display: flex;
     align-items: center;
+    margin-top: 10px ;
 }
 .sidebar .nav-link .material-icons{
     margin-right: 8px;
@@ -42,7 +43,7 @@
     color: white;
     background-color: var(--customer-primary);
     border-radius: 4px;
-    margin: 0 10px;
+    margin-right: 10px;
 }
 .sidebar .merchant-nav-link.active {
     background-color: var(--merchant-primary);
