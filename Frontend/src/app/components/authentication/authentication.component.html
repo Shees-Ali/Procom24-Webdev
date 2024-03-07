@@ -50,5 +50,5 @@
     <button type="submit" class="btn" [ngClass]="{ 'merchant-btn': isCustomer === false }"
       [disabled]="!signUpForm.valid">Submit</button>
   </form>
-  <div>Already Have An Accout <span (click)="toggleForm()">SignIn</span></div>
+  <div class="switch-state-line">Already Have An Accout <span style="color: var(--customer-primary);" (click)="toggleForm()">SignIn</span></div>
 </ng-container>
