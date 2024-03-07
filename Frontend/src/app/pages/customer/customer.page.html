@@ -3,7 +3,7 @@
     <div class="row">
         <sidenav [isCustomer]="true"></sidenav>
         <div class="col-md-9 ms-sm-auto" style="margin-left: 240px; margin-top: 20px;">
-            <router-outlet></router-outlet>
+            <router-outlet><screen-loader *ngIf="isLoading"></screen-loader></router-outlet>
         </div>
     </div>
 </div>

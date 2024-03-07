@@ -6,6 +6,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { ScreenLoaderComponent } from './screen-loader/screen-loader.component';
 
 @NgModule({
   declarations: [
@@ -13,9 +14,10 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
     TopBarComponent,
     SidenavComponent,
     AuthenticationComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    ScreenLoaderComponent
   ],
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
-  exports: [TopBarComponent, SidenavComponent, AuthenticationComponent, PaymentFormComponent],
+  exports: [TopBarComponent, SidenavComponent, AuthenticationComponent, PaymentFormComponent, ScreenLoaderComponent],
 })
 export class ComponentsModule {}
