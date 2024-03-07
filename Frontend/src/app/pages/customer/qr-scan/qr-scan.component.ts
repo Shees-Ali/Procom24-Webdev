@@ -1,7 +1,7 @@
 import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { BasePage } from '../../../base/base';
 import QRCode from 'qrcode-generator';
-import jsQR from 'jsQR';
+import jsQR from 'jsqr';
 
 @Component({
   selector: 'app-qr-scan',
