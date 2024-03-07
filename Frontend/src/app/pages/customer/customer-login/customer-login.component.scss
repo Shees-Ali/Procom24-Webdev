@@ -1,33 +1,4 @@
-.right {
-    height: 100vh;
+.right{
+    height: 100dvh;
     background-color: var(--customer-primary);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .content-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .resizable-image {
-        width: 60%; /* Set a specific width for the image to cover 60% of the blue box */
-        height: auto;
-        margin-bottom: 20px;
-    }
-
-    .text-container {
-        width: 100%;
-        text-align: center;
-    }
-
-    p {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 0;
-    }
 }
