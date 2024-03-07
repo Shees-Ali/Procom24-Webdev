@@ -37,6 +37,10 @@ const orderSchema = new Schema(
       type: String,
       required: true,
       default: "Pending"
+    },
+    createdBy: {
+      type: String,
+       default: ""
     }
   },
   { timestamps: true }
