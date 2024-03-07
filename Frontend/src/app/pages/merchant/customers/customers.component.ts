@@ -20,7 +20,6 @@ export class CustomersComponent extends BasePage implements OnInit {
   async getPayments() {
     this.utility.showLoader();
     const res = await this.network.getAllCustomers();
-    console.log(res);
     if (res) {
       this.items = res.data;
     }

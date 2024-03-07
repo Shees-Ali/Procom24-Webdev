@@ -61,7 +61,6 @@ export class AuthenticationComponent extends BasePage implements OnInit {
     }
 
     const res = await this.userService.register(this.signUpForm.value);
-    console.log('sign up res', res);
     if (res.message == 'User created successfully') {
       this.utility.presentSuccessAlert(res.message);
       this.toggleForm();

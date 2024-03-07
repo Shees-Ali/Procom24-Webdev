@@ -157,7 +157,6 @@ export class NetworkService {
           resolve(res);
         },
         (err) => {
-          console.log(err);
           this.utility.hideLoader();
           if (err.error?.errors?.length > 0) {
             const error = err.error?.errors[0];

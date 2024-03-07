@@ -31,6 +31,7 @@ export class ReportComponent extends BasePage implements OnInit {
       series: [pendingCount, acceptedCount, rejectedCount],
       chart: {
         type: 'donut',
+        width: 480,
       },
       labels: ['Pending Records', 'Accepted Records', 'Rejected Records'],
       responsive: [
@@ -52,7 +53,7 @@ export class ReportComponent extends BasePage implements OnInit {
     this.chartOptions2 = {
       series: [pendingAmount, acceptedAmount, rejectedAmount],
       chart: {
-        width: 380,
+        width: 480,
         type: 'pie',
       },
       labels: ['Pending Amount', 'Accepted Amount', 'Rejected Amount'],

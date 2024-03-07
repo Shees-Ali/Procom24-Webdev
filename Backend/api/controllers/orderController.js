@@ -5,7 +5,6 @@ const Order = require("../models/Order");
 module.exports = {
   get: async (req, res) => {
     try {
-      console.log("KJHASEDJKHASDJKHASJKDH", req.user);
       if (!req.user) {
         return res.status(401).json({ message: "Unauthorized: Access denied" });
       }
@@ -64,7 +63,6 @@ module.exports = {
         data: savedOrder,
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         message: "Internal server error",
       });
@@ -164,7 +162,6 @@ module.exports = {
         data: data,
       });
     } catch (error) {
-      console.log(error);
       res.status(400).json({
         message: error.message,
       });

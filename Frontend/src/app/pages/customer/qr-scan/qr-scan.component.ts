@@ -42,7 +42,6 @@ export class QrScanComponent extends BasePage{
         const decodedData = await this.decodeQRCode(imageData);
         if (decodedData) {
           const parsedData = this.parseQRData(decodedData);
-          console.log(parsedData);
           this.isQRuploaded = true;
           this.QRScannedData = await parsedData;
         } else {
@@ -53,13 +52,11 @@ export class QrScanComponent extends BasePage{
   }
 
   parseQRData(data: string): any {
-    console.log("Data", data)
     var parsedValues: any = {};
     while (data) {
       const valueNumber = data.slice(0, 2);
       const valueSize = parseInt(data.slice(2, 4), 10);
       const value = data.slice(4, 4 + valueSize);
-      console.log(valueNumber, valueSize , value);
       switch (valueNumber) {
         case '01':
           parsedValues.username = value;

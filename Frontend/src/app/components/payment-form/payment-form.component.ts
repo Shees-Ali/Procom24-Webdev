@@ -16,7 +16,6 @@ export class PaymentFormComponent extends BasePage implements OnInit {
   qrCodeImageUrl!: string;
   constructor(injector: Injector) {
     super(injector);
-    console.log("here")
     this.paymentForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: [''],
@@ -62,19 +61,16 @@ export class PaymentFormComponent extends BasePage implements OnInit {
 
   async Submit() {
     this.utility.showLoader();
-    console.log(this.paymentForm);
     if (this.paymentForm.invalid) {
       this.utility.presentAlert('Fill All Fields');
       return;
     }
 
     const res = await this.network.createOrder(this.paymentForm.value);
-    console.log(res);
     if (res.data) {
       //Generate QR Code
       if(this.isCustomer != true){
         const qrData = this.formatQRData(this.paymentForm.value);
-        console.log(qrData);
         this.generateQRCode(qrData);
       }
       this.utility.presentSuccessAlert(res.message);

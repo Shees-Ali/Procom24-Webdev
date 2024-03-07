@@ -24,9 +24,7 @@ export class UserService {
   }
 
   async login(creds: any) {
-    const res = await this.network.login(creds).catch((error) => {
-      console.log(error);
-    });
+    const res = await this.network.login(creds).catch((error) => {});
     localStorage.setItem('token', res.token);
     localStorage.setItem('user_role', res.userDetails.userRole);
     return res;

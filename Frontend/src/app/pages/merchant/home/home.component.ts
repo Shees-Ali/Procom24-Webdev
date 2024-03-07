@@ -16,7 +16,6 @@ export class HomeComponent extends BasePage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const res = await this.network.getReporting();
-    console.log(res);
     const pendingCount = res.data.pendingCount;
     const acceptedCount = res.data.acceptedCount;
     const rejectedCount = res.data.rejectedCount;
@@ -24,7 +23,8 @@ export class HomeComponent extends BasePage implements OnInit {
     this.chartOptions = {
       series: [pendingCount, acceptedCount, rejectedCount],
       chart: {
-        type: "donut"
+        type: "donut",
+        width: 480,
       },
       labels: ["Pending Records", "Accepted Records", "Rejected Records"],
       responsive: [
