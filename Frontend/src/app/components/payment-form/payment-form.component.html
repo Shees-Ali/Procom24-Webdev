@@ -1,9 +1,15 @@
 <ng-container>
     <form (ngSubmit)="Submit()" [formGroup]="paymentForm">
         <div>
-            <div class="form-group">
-              <label for="name">{{(isCustomer)? 'Customer Name' : 'Customer Name'}}</label>
-              <input type="text" class="form-control" formControlName="username" ngModel required>
+            <div>
+                <div class="form-group">
+                  <label for="name">{{(isCustomer)? 'UserName' : 'Customer Name'}}</label>
+                  <input type="text" class="form-control" formControlName="username" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="name">{{(isCustomer)? 'Email Address (Optional)' : 'Customer Email Address (Optional)'}}</label>
+                    <input type="email" class="form-control" formControlName="email" ngModel >
+                </div>
             </div>
             <div class="form-group">
               <label for="amount">Payment Amount</label>
@@ -18,7 +24,7 @@
                 <input type="text" class="form-control" formControlName="merchantAccNumber" ngModel required>
             </div>
             <div class="form-group">
-                <label for="bank">Select Bank</label>
+                <label for="bank">Select {{(isCustomer)? 'Customer' : ''}} Bank Name</label>
                 <input type="password" class="form-control" formControlName="bank" ngModel required>
             </div>
             <div class="form-group">

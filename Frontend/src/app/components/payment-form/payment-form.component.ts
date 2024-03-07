@@ -13,6 +13,7 @@ export class PaymentFormComponent {
   constructor(private formBuilder:FormBuilder){
     this.paymentForm = this.formBuilder.group({
       username: ['', Validators.required],
+      email: [''],
       amount: ['', Validators.required],
       customerAccNumber: ['', Validators.required],
       merchantAccNumber: ['', Validators.required],
