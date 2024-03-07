@@ -8,13 +8,23 @@ import { BasePage } from '../../../base/base';
 })
 export class PaymentsComponent extends BasePage implements OnInit {
   items: any[] = [];
-
+  reportingCounts: any;
   constructor(injector: Injector) {
     super(injector);
   }
 
   ngOnInit() {
+    this.getReportingCount();
     this.getPayments();
+  }
+
+  
+  async getReportingCount() {
+    this.utility.showLoader();
+    const res = await this.network.getReporting();
+    if (res) {
+      this.reportingCounts = res.data;
+    }
   }
 
   async getPayments() {
