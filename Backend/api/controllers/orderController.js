@@ -101,40 +101,70 @@ module.exports = {
 
   getReporting: async (req, res) => {
     try {
-      let allCount = 0;
-      let pendingCount = 0;
-      let acceptedCount = 0;
-      let rejectedCount = 0;
+      let all = 0;
+      let pending = 0;
+      let accepted = 0;
+      let rejected = 0;
 
       if (req.user.userRole !== "customer") {
-        allCount = (await Order.find()).length;
-        pendingCount = (await Order.find({ status: "Pending" })).length;
-        acceptedCount = (await Order.find({ status: "Succeeded" })).length;
-        rejectedCount = (await Order.find({ status: "Rejected" })).length;
+        all = (await Order.find());
+        pending = await Order.find({ status: "Pending" });
+        accepted = await Order.find({ status: "Succeeded" });
+        rejected = await Order.find({ status: "Rejected" });
       } else {
-        allCount = (await Order.find()).length;
-        pendingCount = (
-          await Order.find({ status: "Pending" })
-        ).length;
-        acceptedCount = (
-          await Order.find({ status: "Succeeded" })
-        ).length;
-        rejectedCount = (
-          await Order.find({ status: "Rejected" })
-        ).length;
+        all = await Order.find({ createdBy: req.user.userId });
+        pending = await Order.find({
+          createdBy: req.user.userId,
+          status: "Pending",
+        });
+        accepted = await Order.find({
+          createdBy: req.user.userId,
+          status: "Succeeded",
+        });
+        rejected = await Order.find({
+          createdBy: req.user.userId,
+          status: "Rejected",
+        });
+      }
+      const data = {
+        allCount: all.length,
+        pendingCount: pending.length,
+        acceptedCount: accepted.length,
+        rejectedCount: rejected.length,
+      };
+
+      if (req.user.userRole !== "customer") {
+        let pendingAmount = 0;
+        let acceptedAmount = 0;
+        let rejectedAmount = 0;
+        let allAmount = 0;
+
+        for (const order of all) {
+          switch (order.status) {
+            case "Pending":
+              pendingAmount += order.amount; // Assuming 'amount' is a property with the order value
+              break;
+            case "Succeeded":
+              acceptedAmount += order.amount;
+              break;
+            case "Rejected":
+              rejectedAmount += order.amount;
+              break;
+          }
+          allAmount += order.amount;
+        }
+        data["pendingAmount"] = pendingAmount;
+        data["acceptedAmount"] = acceptedAmount;
+        data["rejectedAmount"] = rejectedAmount;
+        data["allAmount"] = allAmount;
       }
 
       res.status(200).json({
         message: "Orders Fetched Successfully",
-        data: {
-          allCount,
-          pendingCount,
-          acceptedCount,
-          rejectedCount,
-        },
+        data: data,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       res.status(400).json({
         message: error.message,
       });

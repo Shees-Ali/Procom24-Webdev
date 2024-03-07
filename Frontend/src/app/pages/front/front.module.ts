@@ -10,6 +10,7 @@ import { Page3Component } from './page3/page3.component';
 import { Page4Component } from './page4/page4.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { FooterComponent } from './footer/footer.component';
+import { Footer2Component } from './footer2/footer2.component';
 
 
 
@@ -23,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     Page3Component,
     Page4Component,
     PricingComponent,
-    FooterComponent
+    FooterComponent,
+    Footer2Component
   ],
   imports: [
     CommonModule,
