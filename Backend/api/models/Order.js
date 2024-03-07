@@ -35,8 +35,17 @@ const orderSchema = new Schema(
     },
     status: {
       type: String,
-      required: true
-    }
+      required: true,
+      default: "Pending",
+    },
+    createdBy: {
+      type: String,
+      default: "",
+    },
+    amount: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

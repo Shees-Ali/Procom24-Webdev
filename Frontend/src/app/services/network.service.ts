@@ -28,13 +28,32 @@ export class NetworkService {
   };
 
   login(obj: any) {
-    return this.httpPostResponse("auth/login", obj);
+    return this.httpPostResponse('auth/login', obj);
   }
 
   signUp(obj: any) {
-    return this.httpPostResponse("auth/signup", obj);
+    return this.httpPostResponse('auth/signup', obj);
   }
 
+  createOrder(obj: any) {
+    return this.httpPostResponse('orders/create', obj);
+  }
+
+  getOrders() {
+    return this.httpGetResponse('orders');
+  }
+
+  getOrderById(id: string) {
+    return this.httpGetResponse('orders/' + id);
+  }
+
+  updateOrder(id: string, order: any) {
+    return this.httpGetResponse('orders/' + id + '/update', order);
+  }
+
+  getCurrentUser() {
+    return this.httpGetResponse('auth/getCurrent');
+  }
   // Function for POST method
   httpPostResponse(
     key: any,

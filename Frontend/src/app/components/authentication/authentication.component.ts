@@ -1,8 +1,5 @@
 import { Component, Injector, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UtilityService } from '../../services/utility.service';
-import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
+import { FormGroup, Validators } from '@angular/forms';
 import { BasePage } from '../../base/base';
 
 @Component({
@@ -44,8 +41,7 @@ export class AuthenticationComponent extends BasePage implements OnInit {
       return;
     }
 
-    const res = await this.network.login(this.signInForm.value);
-    console.log("login res", res);
+    const res = await this.userService.login(this.signInForm.value);
     if (res) {
       if (res.userDetails.userRole == 'customer') {
         this.router.navigateByUrl('customer/dashboard');
@@ -61,8 +57,8 @@ export class AuthenticationComponent extends BasePage implements OnInit {
       return;
     }
 
-    const res = await this.network.signUp(this.signUpForm.value);
-    console.log("sign up res", res);
+    const res = await this.userService.register(this.signUpForm.value);
+    console.log('sign up res', res);
     if (res.message == 'User created successfully') {
       this.utility.presentSuccessAlert(res.message);
       this.toggleForm();
