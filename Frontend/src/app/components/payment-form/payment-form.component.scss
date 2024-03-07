@@ -1,0 +1,41 @@
+form {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 70%; 
+    
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    h2.form-header {
+        font-size: 18px;
+        font-weight: bold;
+    }
+  
+    .form-group {
+      width: 100%; 
+      margin-bottom: 20px; 
+      
+      label {
+        font-weight: bold; 
+      }
+  
+      input,
+      select {
+        width: 100%; 
+      }
+    }
+  
+    .btn {
+      background-color: #007bff; 
+      color: #fff; 
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+  
