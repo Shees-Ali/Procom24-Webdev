@@ -33,7 +33,7 @@ app.use(cookieParser());
 // Routes
 app.use("/api", indexRouter);
 app.use("/api/auth", auth);
-app.use("/api/orders", orders);
+app.use("/api/orders", authMiddleware, orders);
 
 // Setup Port
 const port = process.env.PORT || 3000;

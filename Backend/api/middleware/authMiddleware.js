@@ -1,18 +1,38 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, process.env.JWT_SecretKey);
-    const userId = decodedToken.userId;
-    if (req.body.userId && req.body.userId !== userId) {
-      throw 'Invalid user ID';
-    } else {
-      next();
+    // Extract token from the Authorization header
+    const token = req.header("Authorization");
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Unauthorized: No token provided" });
     }
-  } catch {
-    res.status(401).json({
-      error: new Error('Invalid request!')
-    });
+
+    // Split the header to get the actual token (remove "Bearer ")
+    const tokenWithoutBearer = token.split(" ")[1];
+
+    if (!tokenWithoutBearer) {
+      return res
+        .status(401)
+        .json({ message: "Unauthorized: Invalid token format" });
+    }
+
+    // Verify the token using the secret key
+    const decoded = jwt.verify(tokenWithoutBearer, process.env.JWT_SecretKey);
+
+    // Attach decoded user data to the request object
+    req.user = decoded;
+
+    // Continue with the request
+    next();
+  } catch (error) {
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({ message: "Unauthorized: Invalid token" });
+    } else {
+      return res.status(500).json({ message: "Internal server error" });
+    }
   }
 };
