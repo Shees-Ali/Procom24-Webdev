@@ -28,6 +28,7 @@
       font-size: 12px;
       border-radius: 12px;
       padding: 4px;
+      padding-inline: 12px;
       margin: 0;
     }
   }
@@ -36,6 +37,7 @@
     background-color: #f4f1fc;
     transition: border 0.3s ease;
     .chip {
+      color: #9b8cc6;
       border: 1px solid #9b8cc6;
     }
   }
@@ -48,6 +50,7 @@
     background-color: #edfdf3;
     transition: border 0.3s ease;
     .chip {
+      color: #1ad758;
       border: 1px solid #1ad758;
     }
   }
@@ -60,6 +63,7 @@
     background-color: #fdf9ee;
     transition: border 0.3s ease;
     .chip {
+      color: #cf920d;
       border: 1px solid #cf920d;
     }
   }
@@ -72,6 +76,7 @@
     background-color: #fcf2f1;
     transition: border 0.3s ease;
     .chip {
+      color:#dd3940;
       border: 1px solid #dd3940;
     }
   }

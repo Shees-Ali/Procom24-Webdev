@@ -1,17 +1,23 @@
 <div>
   <h2>Payments</h2>
   <div class="stats-row">
-    <div class="stats-box" style="background-color: cyan">
-      <p>Total Pending Records</p>
-      <p>{{ reportingCounts?.pendingCount }}</p>
+    <div class="stats-box cyan">
+      <p class="title">Total Pending Records</p>
+      <p class="chip">
+        {{ (reportingCounts?.pendingCount ?? 0) + " Records" }}
+      </p>
     </div>
-    <div class="stats-box" style="background-color: lightgreen">
-      <p>Total Paid Records</p>
-      <p>{{ reportingCounts?.acceptedCount }}</p>
+    <div class="stats-box lightgreen">
+      <p class="title">Total Paid Records</p>
+      <p class="chip">
+        {{ (reportingCounts?.acceptedCount ?? 0) + " Records" }}
+      </p>
     </div>
-    <div class="stats-box" style="background-color: lightcoral">
-      <p>Total Rejected Records</p>
-      <p>{{ reportingCounts?.rejectedCount }}</p>
+    <div class="stats-box lightcoral">
+      <p class="title">Total Rejected Records</p>
+      <p class="chip">
+        {{ (reportingCounts?.rejectedCount ?? 0) + " Records" }}
+      </p>
     </div>
   </div>
   <div>
@@ -32,7 +38,7 @@
           *ngFor="let item of items"
           [ngClass]="item.status == 'Succeeded' ? 'success' : ''"
         >
-          <td>{{ item.accountNumber }}</td>
+          <td class="link">{{ item.accountNumber }}</td>
           <td>{{ item.merchantAccountNumber }}</td>
           <td>
             <span
@@ -54,7 +60,7 @@
           <td>{{ item.paymentPurpose }}</td>
           <td>{{ item.createdAt | date }}</td>
           <td>{{ item.amount + " PKR" }}</td>
-          <td *ngIf="item.status != 'Succeeded'">
+          <td *ngIf="item.status == 'Pending'">
             <button
               style="margin-right: 8px"
               class="btn btn-success"

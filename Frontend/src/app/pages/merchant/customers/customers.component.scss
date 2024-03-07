@@ -2,12 +2,33 @@
     padding: 20px;
 
     h2 {
-        font-size: 28px;
+        font-size: 36px; /* Increased font size */
         font-weight: bold;
         margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .actions {
+            display: flex;
+            flex-direction: column; /* Display buttons in a column */
+            align-items: flex-end; /* Align buttons to the right */
+
+            button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 6px; /* Reduced padding */
+                border-radius: 5px;
+                cursor: pointer;
+                margin-bottom: 10px; /* Margin between buttons */
+
+                i {
+                    margin-right: 5px;
+                    font-size: 12px; /* Reduced font size */
+                }
+            }
+        }
     }
 
     .summary {
@@ -17,7 +38,7 @@
         margin-bottom: 20px;
 
         p {
-            font-size: 14px;
+            font-size: 16px;
             margin: 0;
             font-weight: bold;
         }
@@ -29,21 +50,21 @@
 
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px;
             text-align: left;
 
             .select-box {
                 width: 18px;
                 height: 18px;
                 border: 1px solid #333;
-                background-color: #f5f5f5;
+                background-color: #f5f5f5; /* Change back to default color */
                 display: inline-block;
                 align-self: center;
             }
         }
 
         th {
-            background-color: #f5f5f5;
+            background-color: #f5f5f5; /* Change back to default color */
             color: #333;
         }
     }
