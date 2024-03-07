@@ -10,6 +10,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { PaymentRequestComponent } from './payment-request/payment-request.component';
 import { ReportComponent } from './report/report.component';
 import { SettingsComponent } from './settings/settings.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 
@@ -22,12 +23,13 @@ import { SettingsComponent } from './settings/settings.component';
     CustomersComponent,
     PaymentRequestComponent,
     ReportComponent,
-    SettingsComponent
+    SettingsComponent,
   ],
   imports: [
     CommonModule,
     MerchantRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgApexchartsModule
   ]
 })
 export class MerchantModule { }
