@@ -5,19 +5,19 @@
   <div class="stats-row">
     <div class="stats-box" style="background-color: cyan">
       <p>All Payments</p>
-      <p>1800</p>
+      <p>{{ reportingCounts?.pendingCount }}</p>
     </div>
     <div class="stats-box" style="background-color: lightgreen">
       <p>Succeeded</p>
-      <p>1800</p>
+      <p>{{ reportingCounts?.acceptedCount }}</p>
     </div>
     <div class="stats-box" style="background-color: lightcoral">
       <p>Pending</p>
-      <p>1800</p>
+      <p>{{ reportingCounts?.pendingCount }}</p>
     </div>
     <div class="stats-box" style="background-color: lightgoldenrodyellow">
       <p>Rejected</p>
-      <p>1800</p>
+      <p>{{ reportingCounts?.rejectedCount }}</p>
     </div>
   </div>
   <div>

@@ -11,20 +11,21 @@ export class PaymentsComponent extends BasePage implements OnInit {
     {},
     // Add more items as needed
   ];
-
+  reportingCounts: any;
   constructor(injector: Injector) {
     super(injector);
   }
 
   ngOnInit() {
+    this.getReportingCount();
     this.getPayments();
   }
 
   async getReportingCount() {
     this.utility.showLoader();
-    const res = await this.network.getOrders();
+    const res = await this.network.getReporting();
     if (res) {
-      this.items = res.data;
+      this.reportingCounts = res.data;
     }
   }
 

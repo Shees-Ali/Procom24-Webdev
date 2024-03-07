@@ -14,12 +14,12 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 router.get("/", authMiddleware, get);
 
+router.get("/reportingCount", [authMiddleware], getReporting);
+
 router.get("/:id", authMiddleware, getOne);
 
 router.post("/create", [validateCreate, authMiddleware], create);
 
 router.put("/:id/update", [authMiddleware], update);
-
-router.get("/reportingCount", [authMiddleware], getReporting);
 
 module.exports = router;
