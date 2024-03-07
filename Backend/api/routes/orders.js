@@ -8,7 +8,7 @@ const {
   update,
 } = require("../controllers/orderController");
 
-const { validateCreate } = require("../helpers/validations");
+const { validateCreate } = require("../middleware/validations");
 
 router.get("/", get);
 

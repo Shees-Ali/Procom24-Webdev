@@ -8,6 +8,8 @@ var indexRouter = require("./api/routes/index");
 var auth = require("./api/routes/auth");
 var orders = require("./api/routes/orders");
 
+const authMiddleware = require("./api/middleware/authMiddleware");
+
 var app = express();
 // Connect to MongoDB Database
 connectDB();
@@ -31,7 +33,7 @@ app.use(cookieParser());
 // Routes
 app.use("/api", indexRouter);
 app.use("/api/auth", auth);
-app.use("/api/orders", orders);
+app.use("/api/orders", authMiddleware, orders);
 
 // Setup Port
 const port = process.env.PORT || 3000;
