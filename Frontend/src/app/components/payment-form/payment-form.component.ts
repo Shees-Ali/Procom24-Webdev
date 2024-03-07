@@ -42,6 +42,7 @@ export class PaymentFormComponent extends BasePage implements OnInit {
           amount: this.qrScanData.amount,
           merchantAccountNumber : this.qrScanData.merchantAccountNumber,
           accountNumber: this.qrScanData.accountNumber,
+          bank: this.qrScanData.bank,
           paymentPurpose : this.qrScanData.paymentPurpose
         };
         this.paymentForm.patchValue(userPatchData);

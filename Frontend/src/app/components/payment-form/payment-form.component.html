@@ -82,6 +82,9 @@
     </div>
     <button type="submit" class="btn">Submit</button>
   </form>
-  <img *ngIf="qrCodeImageUrl" [src]="qrCodeImageUrl" alt="QR Code">
-  <button *ngIf="qrCodeImageUrl" class="btn btn-primary" (click)="downloadQRCode()">Download QR Code</button>
+  <div class="container" style="flex-direction: column;">
+    <img *ngIf="qrCodeImageUrl" [src]="qrCodeImageUrl" alt="QR Code">
+  </div>
+  <button *ngIf="qrCodeImageUrl" class="btn btn-primary" (click)="downloadQRCode()" style="margin-top: 30px;">Download QR Code</button>
+  
 </ng-container>
