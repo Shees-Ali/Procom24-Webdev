@@ -8,9 +8,8 @@ export class ApiService {
   url: string;
 
   constructor(public http: HttpClient) {
-    this.url = '';
     //  this.url = '';
-    // this.url = 'https://localhost:5001/api'
+    this.url ='https://procom24-webdev-backend.vercel.app/api';
   }
 
   // GET request

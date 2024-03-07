@@ -1,27 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilityService } from '../../services/utility.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
+import { BasePage } from '../../base/base';
 
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.scss',
 })
-export class AuthenticationComponent implements OnInit {
+export class AuthenticationComponent extends BasePage implements OnInit {
   @Input() isCustomer: boolean | undefined;
   signInForm!: FormGroup<any>;
   signUpForm!: FormGroup<any>;
   title: string | undefined;
   isSignup: boolean = false;
 
-  constructor(
-    private utility: UtilityService,
-    private authService: AuthenticationService,
-    private formBuilder: FormBuilder,
-    private router:Router
-  ) {
+  constructor(injector: Injector) {
+    super(injector);
     this.signInForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -40,31 +37,40 @@ export class AuthenticationComponent implements OnInit {
     this.title = this.isCustomer == true ? 'Customer Portal' : 'PayHabib';
   }
 
-  Login() {
+  async Login() {
     this.utility.showLoader();
-    console.log(this.signInForm.value);
-    this.authService.login(this.signInForm.value).subscribe((a) => {
-      console.log(a);
-      this.utility.hideLoader();
-      if(a.userDetails.userRole == "customer"){
-        this.router.navigateByUrl('customer/dashboard')
+    if (this.signInForm.invalid) {
+      this.utility.presentAlert('Fill All Fields');
+      return;
+    }
+
+    const res = await this.network.login(this.signInForm.value);
+    console.log("login res", res);
+    if (res) {
+      if (res.userDetails.userRole == 'customer') {
+        this.router.navigateByUrl('customer/dashboard');
       }
-    });
+    }
+    this.utility.hideLoader();
   }
 
-  Signup() {
+  async Signup() {
     this.utility.showLoader();
-    console.log(this.signUpForm.value);
-    this.authService.signup(this.signUpForm.value).subscribe((a) => {
-      console.log(a);
-      this.utility.hideLoader();
-      if(a.message == "user created successfully"){
-        this.utility.presentSuccessAlert(a.message);
-      }
-    });
+    if (this.signUpForm.invalid) {
+      this.utility.presentAlert('Fill All Fields');
+      return;
+    }
+
+    const res = await this.network.signUp(this.signUpForm.value);
+    console.log("sign up res", res);
+    if (res.message == 'User created successfully') {
+      this.utility.presentSuccessAlert(res.message);
+      this.toggleForm();
+    }
+    this.utility.hideLoader();
   }
 
-  toggleForm(){
+  toggleForm() {
     this.isSignup = !this.isSignup;
   }
 }
