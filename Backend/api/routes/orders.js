@@ -6,16 +6,20 @@ const {
   get,
   getOne,
   update,
+  getReporting,
 } = require("../controllers/orderController");
 
 const { validateCreate } = require("../middleware/validations");
+const authMiddleware = require("../middleware/authMiddleware");
 
-router.get("/", get);
+router.get("/", authMiddleware, get);
 
-router.get("/:id", getOne);
+router.get("/:id", authMiddleware, getOne);
 
-router.post("/create", validateCreate, create);
+router.post("/create", [validateCreate, authMiddleware], create);
 
-router.put("/:id/update", validateCreate, update);
+router.put("/:id/update", [authMiddleware], update);
+
+router.get("/reportingCount", [authMiddleware], getReporting);
 
 module.exports = router;

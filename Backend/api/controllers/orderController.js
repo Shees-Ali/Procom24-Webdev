@@ -5,6 +5,10 @@ const Order = require("../models/Order");
 module.exports = {
   get: async (req, res) => {
     try {
+      console.log("KJHASEDJKHASDJKHASJKDH", req.user);
+      if (!req.user) {
+        return res.status(401).json({ message: "Unauthorized: Access denied" });
+      }
       let orders = [];
       if (req.user.userRole !== "customer") {
         orders = await Order.find();
@@ -122,7 +126,12 @@ module.exports = {
 
       res.status(200).json({
         message: "Orders Fetched Successfully",
-        data: orders,
+        data: {
+          allCount,
+          pendingCount,
+          acceptedCount,
+          rejectedCount,
+        },
       });
     } catch (error) {
       res.status(400).json({

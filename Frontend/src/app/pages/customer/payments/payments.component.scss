@@ -1,15 +1,20 @@
-.stats-row{
+.stats-row {
+  display: flex;
+  margin: 20px 0;
+  .stats-box {
+    margin: 0 20px 0 0;
+    border-radius: 8px;
+    color: black;
     display: flex;
-    margin: 20px 0;
-    .stats-box{
-        margin: 0 20px 0 0;
-        border-radius: 8px;
-        color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
-        width: 180px;
-    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 180px;
+  }
+}
+
+.badge-pill {
+  font-size: 14px;
+  padding: 8px;
 }

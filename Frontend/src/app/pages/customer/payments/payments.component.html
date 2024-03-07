@@ -22,7 +22,6 @@
           <th>Merchant Account No.</th>
           <th>Status</th>
           <th>Description</th>
-          <th>Time</th>
           <th>Date</th>
           <th>Amount</th>
           <th>Actions</th>
@@ -30,15 +29,36 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of items">
-          <td>{{ item.customerAccountNo }}</td>
-          <td>{{ item.merchantAccountNo }}</td>
-          <td>{{ item.status }}</td>
-          <td>{{ item.description }}</td>
-          <td>{{ item.time }}</td>
-          <td>{{ item.date }}</td>
-          <td>{{ item.amount }}</td>
+          <td>{{ item.accountNumber }}</td>
+          <td>{{ item.merchantAccountNumber }}</td>
           <td>
-            <button class="btn btn-primary" (click)="pay(item)">Pay</button>
+            <span
+              *ngIf="item.status == 'Pending'"
+              class="badge badge-pill badge-light"
+              >{{ item.status }}</span
+            >
+            <span
+              *ngIf="item.status == 'Succeeded'"
+              class="badge badge-pill badge-success"
+              >{{ item.status }}</span
+            >
+            <span
+              *ngIf="item.status == 'Rejected'"
+              class="badge badge-pill badge-danger"
+              >{{ item.status }}</span
+            >
+          </td>
+          <td>{{ item.paymentPurpose }}</td>
+          <td>{{ item.createdAt | date }}</td>
+          <td>{{ item.amount + " PKR" }}</td>
+          <td>
+            <button
+              style="margin-right: 8px"
+              class="btn btn-success"
+              (click)="pay(item)"
+            >
+              Pay
+            </button>
             <button class="btn btn-danger" (click)="reject(item)">
               Reject
             </button>

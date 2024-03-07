@@ -4,7 +4,6 @@ module.exports = async (req, res, next) => {
   try {
     // Extract token from the Authorization header
     const token = req.header("Authorization");
-
     if (!token) {
       return res
         .status(401)
