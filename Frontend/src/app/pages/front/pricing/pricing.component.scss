@@ -1,0 +1,31 @@
+.container
+{
+    display: flex ;
+
+}
+.payment-info {
+    display: flex;
+    align-items: center;
+}
+
+.payment-percentage {
+    font-size: 2em; 
+    margin-right: 5px; 
+}
+.payment-description {
+    font-size: 0.8em; 
+}
+.heading {
+    text-align: center; 
+    margin-bottom: 20px; 
+  }
+  
+  .card-container {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+  }
+  
+  
+  

@@ -48,11 +48,20 @@ export class NetworkService {
   }
 
   updateOrder(id: string, order: any) {
-    return this.httpGetResponse('orders/' + id + '/update', order);
+    return this.httpPutResponse('orders/' + id + '/update', order);
+  }
+
+  getReporting() {
+    return this.httpGetResponse('orders/reportingCount');
   }
 
   getCurrentUser() {
     return this.httpGetResponse('auth/getCurrent');
+  }
+
+  // Merchant APIs
+  getAllCustomers() {
+    return this.httpGetResponse('auth/getAllCustomers');
   }
   // Function for POST method
   httpPostResponse(

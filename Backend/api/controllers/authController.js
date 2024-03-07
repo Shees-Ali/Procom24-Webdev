@@ -84,6 +84,40 @@ module.exports = {
     }
   },
 
+  signUpAsMerchant: async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(422).json({
+          errors: errors.array(),
+        });
+      }
+      const { username, email, password, phoneNumber, accountNumber } =
+        req.body;
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const newUser = new User({
+        username,
+        email,
+        password: hashedPassword,
+        phoneNumber,
+        accountNumber,
+        userRole: "merchant",
+      });
+      const result = await newUser.save();
+
+      res.status(200).json({
+        message: "User created successfully",
+        user: result,
+      });
+    } catch (error) {
+      res.status(400).json({
+        message: error._message,
+      });
+    }
+  },
+
   getCurrent: async (req, res) => {
     try {
       // Ensure user is authenticated using middleware before this function
@@ -101,10 +135,29 @@ module.exports = {
       delete sanitizedUser.password;
 
       res.status(200).json({
-        user: sanitizedUser
+        user: sanitizedUser,
       });
     } catch (error) {
       console.error("Error fetching current user:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  getAllCustomers: async (req, res) => {
+    try {
+      // Find all users with role 'customer'
+      const customers = await User.find({ userRole: "customer" });
+
+      if (!customers) {
+        return res.status(404).json({ message: "No customer users found" });
+      }
+
+      res.status(200).json({
+        message: "Customers List Fetched",
+        data: customers,
+      });
+    } catch (error) {
+      console.error("Error fetching customer users:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   },

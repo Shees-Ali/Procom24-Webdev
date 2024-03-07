@@ -22,7 +22,7 @@
     <button type="submit" class="btn" [ngClass]="{ 'merchant-btn': isCustomer === false }"
       [disabled]="!signInForm.valid">Submit</button>
   </form>
-  <div *ngIf="isCustomer">Already Have An Accout <span (click)="toggleForm()">SignIn</span></div>
+  <div *ngIf="isCustomer">Already Have An Account? <span (click)="toggleForm()">      Sign In!</span></div>
 </ng-container>
 
 <ng-container *ngIf="isSignup">

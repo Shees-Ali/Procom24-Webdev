@@ -1,4 +1,4 @@
-import { Component, Injector, Input } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BasePage } from '../../base/base';
 import QRCode from 'qrcode-generator';
@@ -8,7 +8,7 @@ import QRCode from 'qrcode-generator';
   templateUrl: './payment-form.component.html',
   styleUrl: './payment-form.component.scss',
 })
-export class PaymentFormComponent extends BasePage {
+export class PaymentFormComponent extends BasePage implements OnInit {
   @Input() isCustomer: boolean | undefined;
   paymentForm!: FormGroup<any>;
   user: any;
@@ -24,6 +24,9 @@ export class PaymentFormComponent extends BasePage {
       bank: ['', Validators.required],
       paymentPurpose: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
     this.getCurrentUser();
   }
 

@@ -5,6 +5,10 @@ const Order = require("../models/Order");
 module.exports = {
   get: async (req, res) => {
     try {
+      console.log("KJHASEDJKHASDJKHASJKDH", req.user);
+      if (!req.user) {
+        return res.status(401).json({ message: "Unauthorized: Access denied" });
+      }
       let orders = [];
       if (req.user.userRole !== "customer") {
         orders = await Order.find();
@@ -105,26 +109,32 @@ module.exports = {
       if (req.user.userRole !== "customer") {
         allCount = (await Order.find()).length;
         pendingCount = (await Order.find({ status: "Pending" })).length;
-        acceptedCount = (await Order.find({ status: "Accepted" })).length;
+        acceptedCount = (await Order.find({ status: "Succeeded" })).length;
         rejectedCount = (await Order.find({ status: "Rejected" })).length;
       } else {
-        allCount = (await Order.find({ createdBy: req.user.userId })).length;
+        allCount = (await Order.find()).length;
         pendingCount = (
-          await Order.find({ createdBy: req.user.userId, status: "Pending" })
+          await Order.find({ status: "Pending" })
         ).length;
         acceptedCount = (
-          await Order.find({ createdBy: req.user.userId, status: "Accepted" })
+          await Order.find({ status: "Succeeded" })
         ).length;
         rejectedCount = (
-          await Order.find({ createdBy: req.user.userId, status: "Rejected" })
+          await Order.find({ status: "Rejected" })
         ).length;
       }
 
       res.status(200).json({
         message: "Orders Fetched Successfully",
-        data: orders,
+        data: {
+          allCount,
+          pendingCount,
+          acceptedCount,
+          rejectedCount,
+        },
       });
     } catch (error) {
+      console.log(error)
       res.status(400).json({
         message: error.message,
       });

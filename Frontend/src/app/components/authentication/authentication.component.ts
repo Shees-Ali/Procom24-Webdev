@@ -46,6 +46,9 @@ export class AuthenticationComponent extends BasePage implements OnInit {
       if (res.userDetails.userRole == 'customer') {
         this.router.navigateByUrl('customer/dashboard');
       }
+      if (res.userDetails.userRole == 'merchant') {
+        this.router.navigateByUrl('merchant/dashboard');
+      }
     }
     this.utility.hideLoader();
   }
