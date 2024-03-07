@@ -39,7 +39,7 @@ export class UserService {
 
   logout() {
     this.user = null;
-    this.router.navigate(['']);
+    // this.router.navigate(['']);
     localStorage.removeItem('token');
     localStorage.removeItem('user_role');
   }
