@@ -1,0 +1,46 @@
+.header {
+    background-color: #ffffff;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+  }
+  
+  .material-icons {
+    color: var(--merchant-primary);
+    font-size: 16px; 
+    margin-right: 8px;  
+  }
+  
+  #PayHabib {
+    font-size: 18px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .navbar a:not(:first-child):not(:last-child) {
+   
+    text-align: center;
+   padding-left: 200px; 
+    text-decoration: none;
+    color: #9c9595bd;
+  }
+  
+  
+  .navbar a:first-child { 
+    margin-left: 0; 
+  }
+  
+  .navbar a:last-child { 
+    padding: 5px;
+    margin-left: auto; 
+    background-color: #734fea27;
+    color: #744fea;
+    border-radius: 10%;
+}
+.navbar a hover{
+    color: black;
+}

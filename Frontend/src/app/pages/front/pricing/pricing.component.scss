@@ -1,0 +1,20 @@
+.container
+{
+    display: flex ;
+
+}
+.payment-info {
+    display: flex;
+    align-items: center;
+}
+
+.payment-percentage {
+    font-size: 2em; /* Adjust the font size as needed */
+    margin-right: 5px; /* Add some spacing between the percentage and the text */
+}
+
+.payment-description {
+    font-size: 0.8em; /* Adjust the font size for the description */
+}
+.material-icons{
+}

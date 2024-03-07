@@ -1,0 +1,19 @@
+.content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    color: black; 
+    padding: 20px; 
+  }
+  
+  .content button {
+    background-color: #333; 
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
